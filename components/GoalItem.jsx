@@ -1,12 +1,12 @@
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, Pressable } from "react-native";
 
 const GoalItem = (props) => {
   return (
-    <TouchableOpacity onPress={() => props.onPress(props.goalKey)}>
+    <Pressable onPress={() => props.onPress(props.goalKey)}>
       <View style={styles.goals}>
         <Text style={styles.goalText}>{props.text}</Text>
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 
