@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { StyleSheet, View, FlatList, Button, Modal } from "react-native";
+import { StyleSheet, View, FlatList, Button } from "react-native";
+import { StatusBar } from "expo-status-bar";
+
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
 
@@ -40,27 +42,29 @@ export default function App() {
     });
   }
   return (
-    <View style={styles.appContainer}>
-      <Button
-        title="Add New Goal"
-        color="#5e0acc"
-        onPress={startAddGoalHandler}
-      />
+    <>
+      <StatusBar style="light" />
+      <View style={styles.appContainer}>
+        <Button
+          title="Add New Goal"
+          color="#5e0acc"
+          onPress={startAddGoalHandler}
+        />
 
-      <GoalInput
-        visible={modalIsVisible}
-        goalInputHandler={goalInputHandler}
-        addGoalHandler={addGoalHandler}
-        enteredGoalText={enteredGoalText}
-        onCancel={endAddGoalHandler}
-      />
+        <GoalInput
+          visible={modalIsVisible}
+          goalInputHandler={goalInputHandler}
+          addGoalHandler={addGoalHandler}
+          enteredGoalText={enteredGoalText}
+          onCancel={endAddGoalHandler}
+        />
 
-      <View style={styles.goalsContainer}>
-        {/* alwaysBounceVertical only applies to iphones*/}
+        <View style={styles.goalsContainer}>
+          {/* alwaysBounceVertical only applies to iphones*/}
 
-        {/* ScrollView is great for list that end or limited lists*/}
+          {/* ScrollView is great for list that end or limited lists*/}
 
-        {/*
+          {/*
         <ScrollView alwaysBounceVertical={false}>
           {myGoals.map((goal) => (
             <View style={styles.goals} key={goal}>
@@ -69,8 +73,8 @@ export default function App() {
           ))}
         </ScrollView>*/}
 
-        {/* FlatList is great for very long lists*/}
-        {/*
+          {/* FlatList is great for very long lists*/}
+          {/*
         <FlatList
           data={myGoals}
           renderItem={(itemData) => {
@@ -82,22 +86,23 @@ export default function App() {
           }}
           alwaysBounceVertical={false}
         />*/}
-        {/*//////Flatlist Intergrated with a imported component////*/}
-        <FlatList
-          data={myGoals}
-          renderItem={(itemData) => {
-            return (
-              <GoalItem
-                text={itemData.item.text}
-                goalKey={itemData.item.key}
-                onPress={removeGoalHandler}
-              />
-            );
-          }}
-          alwaysBounceVertical={false}
-        />
+          {/*//////Flatlist Intergrated with a imported component////*/}
+          <FlatList
+            data={myGoals}
+            renderItem={(itemData) => {
+              return (
+                <GoalItem
+                  text={itemData.item.text}
+                  goalKey={itemData.item.key}
+                  onPress={removeGoalHandler}
+                />
+              );
+            }}
+            alwaysBounceVertical={false}
+          />
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
